@@ -120,6 +120,9 @@ export function Navbar() {
             <a href="/#about" className="block px-3 py-2 rounded-lg hover:bg-secondary text-sm font-medium" onClick={() => setOpen(false)}>
               About
             </a>
+            <Link to="/faq" className="block px-3 py-2 rounded-lg hover:bg-secondary text-sm font-medium" onClick={() => setOpen(false)}>
+              FAQ
+            </Link>
             <div className="pt-2 mt-2 border-t border-border">
               <p className="px-3 py-1 text-xs uppercase tracking-wider text-muted-foreground">Legal</p>
               {legalLinks.map((l) => (
