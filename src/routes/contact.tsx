@@ -17,6 +17,17 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(form.subject || "Sonia Buddy — Contact");
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+    );
+    window.location.href = `mailto:zisakhoofficial@gmail.com?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
 
   return (
     <PageShell>
@@ -57,13 +68,7 @@ function ContactPage() {
 
           {/* form */}
           <div className="lg:col-span-3">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-              }}
-              className="glass-card rounded-3xl p-7 md:p-9"
-            >
+            <form onSubmit={handleSubmit} className="glass-card rounded-3xl p-7 md:p-9">
               {sent ? (
                 <div className="text-center py-10">
                   <CheckCircle2 className="h-14 w-14 text-accent mx-auto" />
@@ -76,17 +81,19 @@ function ContactPage() {
                   <p className="text-sm text-muted-foreground mt-1">We'll reply by email.</p>
 
                   <div className="mt-6 grid sm:grid-cols-2 gap-4">
-                    <Field label="Your name" name="name" required />
-                    <Field label="Email address" type="email" name="email" required />
+                    <Field label="Your name" name="name" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                    <Field label="Email address" type="email" name="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
                   </div>
                   <div className="mt-4">
-                    <Field label="Subject" name="subject" required />
+                    <Field label="Subject" name="subject" required value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} />
                   </div>
                   <div className="mt-4">
                     <label className="block text-sm font-medium mb-1.5">Message</label>
                     <textarea
                       required
                       rows={5}
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 text-sm"
                       placeholder="How can we help?"
                     />
@@ -95,6 +102,9 @@ function ContactPage() {
                   <button type="submit" className="btn-primary mt-6 w-full sm:w-auto">
                     <Send className="h-4 w-4" /> Send Message
                   </button>
+                  <p className="mt-3 text-xs text-muted-foreground">
+                    This will open your email app to send to zisakhoofficial@gmail.com
+                  </p>
                 </>
               )}
             </form>

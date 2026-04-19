@@ -1,6 +1,7 @@
 import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { SoniaAI } from "@/components/SoniaAI";
 
 function NotFoundComponent() {
   return (
@@ -41,7 +42,7 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootShell,
-  component: () => <Outlet />,
+  component: () => (<><Outlet /><SoniaAI /></>),
   notFoundComponent: NotFoundComponent,
 });
 
