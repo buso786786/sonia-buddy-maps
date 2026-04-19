@@ -58,6 +58,13 @@ export function Navbar() {
             >
               About
             </a>
+            <Link
+              to="/faq"
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              activeProps={{ className: "px-4 py-2 text-sm font-semibold text-foreground" }}
+            >
+              FAQ
+            </Link>
             <div
               className="relative"
               onMouseEnter={() => setLegalOpen(true)}
