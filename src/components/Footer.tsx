@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Instagram, Twitter, Facebook } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export function Footer() {
@@ -50,15 +50,11 @@ export function Footer() {
               </li>
             </ul>
             <div className="mt-4 flex gap-3">
-              <a href="#" aria-label="Instagram" className="p-2 rounded-lg border border-border hover:border-accent hover:text-accent transition-colors">
-                <Instagram className="h-4 w-4" />
-              </a>
-              <a href="#" aria-label="Twitter" className="p-2 rounded-lg border border-border hover:border-accent hover:text-accent transition-colors">
-                <Twitter className="h-4 w-4" />
-              </a>
-              <a href="#" aria-label="Facebook" className="p-2 rounded-lg border border-border hover:border-accent hover:text-accent transition-colors">
-                <Facebook className="h-4 w-4" />
-              </a>
+              {["Instagram", "Twitter", "Facebook"].map((s) => (
+                <a key={s} href="#" aria-label={s} className="px-3 py-1.5 rounded-lg border border-border text-xs font-medium hover:border-accent hover:text-accent transition-colors">
+                  {s}
+                </a>
+              ))}
             </div>
           </div>
         </div>
